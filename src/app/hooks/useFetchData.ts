@@ -25,7 +25,7 @@ export const useFetchData = (url: string, options?: RequestInit) => {
 
   useEffect(() => {
     fetchData();
-  }, [url]);
+  }, [url, fetchData]);
 
   return useMemo(
     () => ({ data, loading, error, refetch: fetchData }),

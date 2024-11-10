@@ -61,7 +61,7 @@ export const useFetchCompaniesData = (): UseFetchCompaniesDataType => {
 
   useEffect(() => {
     if (!loadingAllCompanies && allCompanies) {
-      let pagesArray = [];
+      const pagesArray = [];
       const currentRangeStart = (currentPage - 1) * resultsPerPage + 1;
       const currentRangeEnd = currentRangeStart + (resultsPerPage - 1);
       const totalPages = Math.ceil(allCompanies.length / resultsPerPage);
@@ -91,7 +91,7 @@ export const useFetchCompaniesData = (): UseFetchCompaniesDataType => {
 
     params.set('page', currentPage.toString());
     window.history.pushState(null, '', `?${params.toString()}`);
-  }, [currentPage]);
+  }, [currentPage, searchParams]);
 
   const next = useCallback(() => {
     if (currentPage < totalPages) {
@@ -109,13 +109,13 @@ export const useFetchCompaniesData = (): UseFetchCompaniesDataType => {
     await setCurrentPage(1);
     await refetch();
     await refetchAllCompanies();
-  }, []);
+  }, [refetch, refetchAllCompanies, setCurrentPage]);
 
   useEffect(() => {
     if (!loading && data) {
       setCompanies(data);
     }
-  }, [loading]);
+  }, [data, loading]);
 
   return useMemo(
     () => ({

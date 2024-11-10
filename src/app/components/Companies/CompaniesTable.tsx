@@ -34,33 +34,36 @@ const CompaniesTable = ({
     setModal({ open: true, payload: { id } });
   }, []);
 
-  const handleRemove = useCallback(async (payload: { id: number }) => {
-    // Set payload as array of a single ID since the API supports multiple IDs.
-    const newPayload = [payload.id];
+  const handleRemove = useCallback(
+    async (payload: { id: number }) => {
+      // Set payload as array of a single ID since the API supports multiple IDs.
+      const newPayload = [payload.id];
 
-    setLoading(true);
+      setLoading(true);
 
-    try {
-      const res = await fetch('/api/companies/', {
-        method: 'DELETE',
-        body: JSON.stringify(newPayload)
-      });
-      const json = await res.json();
+      try {
+        const res = await fetch('/api/companies/', {
+          method: 'DELETE',
+          body: JSON.stringify(newPayload)
+        });
+        const json = await res.json();
 
-      if (json.success) {
-        setModal((prev) => ({ ...prev, open: false }));
-        setSelectedCompanies((prev) =>
-          prev.filter((companyId) => companyId !== payload.id)
-        );
+        if (json.success) {
+          setModal((prev) => ({ ...prev, open: false }));
+          setSelectedCompanies((prev) =>
+            prev.filter((companyId) => companyId !== payload.id)
+          );
 
-        await pagination.refreshData();
+          await pagination.refreshData();
+        }
+      } catch (e) {
+        setError(e instanceof Error ? e.message : String(e));
+      } finally {
+        setLoading(false);
       }
-    } catch (e) {
-      setError(e instanceof Error ? e.message : String(e));
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+    },
+    [pagination, setSelectedCompanies]
+  );
 
   const handleOnCheckboxChange = useCallback(
     (id: number) => {
@@ -78,7 +81,7 @@ const CompaniesTable = ({
         setSelectedCompanies(newSelectedCompanies);
       }
     },
-    [selectedCompanies]
+    [selectedCompanies, setSelectedCompanies]
   );
 
   const handleOnSelectAllCheckbox = useCallback(
@@ -87,7 +90,7 @@ const CompaniesTable = ({
 
       setSelectedCompanies(checked ? data.map((company) => company.id) : []);
     },
-    []
+    [data, setSelectedCompanies]
   );
 
   const isCompanySelected = useCallback(

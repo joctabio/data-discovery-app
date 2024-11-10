@@ -62,12 +62,12 @@ const Companies: React.FC = () => {
     } catch (e) {
       setRemoveError(e instanceof Error ? e.message : String(e));
     }
-  }, [selectedCompanies]);
+  }, [selectedCompanies, pagination]);
 
   const handleRefresh = useCallback(() => {
     setSelectedCompanies([]); // Reset selected items when refreshing
     pagination.refreshData();
-  }, []);
+  }, [pagination]);
 
   if (error) {
     return (

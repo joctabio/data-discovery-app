@@ -1,0 +1,204 @@
+{
+  "companies": [
+    {
+      "id": 1,
+      "name": "BlueWave Technologies"
+    },
+    {
+      "id": 2,
+      "name": "GreenPeak Solutions"
+    },
+    {
+      "id": 3,
+      "name": "SilverLining Innovations"
+    },
+    {
+      "id": 4,
+      "name": "Quantum Pulse Enterprises"
+    },
+    {
+      "id": 5,
+      "name": "NextGen Dynamics"
+    },
+    {
+      "id": 6,
+      "name": "SwiftTech Labs"
+    },
+    {
+      "id": 7,
+      "name": "Crimson Horizon Corp"
+    },
+    {
+      "id": 8,
+      "name": "CoreVision Systems"
+    },
+    {
+      "id": 9,
+      "name": "SummitCloud Solutions"
+    },
+    {
+      "id": 10,
+      "name": "BrightBridge Technologies"
+    },
+    {
+      "id": 11,
+      "name": "EcoShift Industries"
+    },
+    {
+      "id": 12,
+      "name": "Pinnacle Ventures"
+    },
+    {
+      "id": 13,
+      "name": "Zenith Enterprises"
+    },
+    {
+      "id": 14,
+      "name": "FusionCore Technologies"
+    },
+    {
+      "id": 15,
+      "name": "HorizonWave Innovations"
+    },
+    {
+      "id": 16,
+      "name": "Eclipse Networks"
+    },
+    {
+      "id": 17,
+      "name": "Vanguard Systems"
+    },
+    {
+      "id": 18,
+      "name": "Infinite Horizon Corp"
+    },
+    {
+      "id": 19,
+      "name": "SilverStream Solutions"
+    },
+    {
+      "id": 20,
+      "name": "StarPoint Enterprises"
+    },
+    {
+      "id": 21,
+      "name": "CloudPeak Solutions"
+    },
+    {
+      "id": 22,
+      "name": "Elementor Technologies"
+    },
+    {
+      "id": 23,
+      "name": "Skyline Ventures"
+    },
+    {
+      "id": 24,
+      "name": "Ironclad Innovations"
+    },
+    {
+      "id": 25,
+      "name": "FusionCloud Labs"
+    },
+    {
+      "id": 26,
+      "name": "NovaTech Enterprises"
+    },
+    {
+      "id": 27,
+      "name": "ApexFusion Systems"
+    },
+    {
+      "id": 28,
+      "name": "OpalCore Technologies"
+    },
+    {
+      "id": 29,
+      "name": "NextEra Labs"
+    },
+    {
+      "id": 30,
+      "name": "Vortex Dynamics"
+    },
+    {
+      "id": 31,
+      "name": "CloudShift Systems"
+    },
+    {
+      "id": 32,
+      "name": "Ionix Labs"
+    },
+    {
+      "id": 33,
+      "name": "RedRock Solutions"
+    },
+    {
+      "id": 34,
+      "name": "Luminous Technologies"
+    },
+    {
+      "id": 35,
+      "name": "Titanic Systems"
+    },
+    {
+      "id": 36,
+      "name": "FuturePath Innovations"
+    },
+    {
+      "id": 37,
+      "name": "VertexCore Ventures"
+    },
+    {
+      "id": 38,
+      "name": "CosmicWave Enterprises"
+    },
+    {
+      "id": 39,
+      "name": "AstroTech Solutions"
+    },
+    {
+      "id": 40,
+      "name": "PrimeEdge Ventures"
+    },
+    {
+      "id": 41,
+      "name": "HyperFusion Labs"
+    },
+    {
+      "id": 42,
+      "name": "LunarShift Technologies"
+    },
+    {
+      "id": 43,
+      "name": "Digital Horizon Corp"
+    },
+    {
+      "id": 44,
+      "name": "EchoPoint Systems"
+    },
+    {
+      "id": 45,
+      "name": "ZenCore Labs"
+    },
+    {
+      "id": 46,
+      "name": "PinnacleTech Innovations"
+    },
+    {
+      "id": 47,
+      "name": "VectorCore Solutions"
+    },
+    {
+      "id": 48,
+      "name": "Stratosphere Technologies"
+    },
+    {
+      "id": 49,
+      "name": "Orion Networks"
+    },
+    {
+      "id": 50,
+      "name": "QuantumShift Enterprises"
+    }
+  ]
+}

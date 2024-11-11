@@ -52,7 +52,8 @@ export async function GET(request: NextRequest) {
   } catch (e) {
     return NextResponse.json({
       success: false,
-      message: e instanceof Error ? e.message : String(e)
+      message: e instanceof Error ? e.message : String(e),
+      requestPath: `${process.env.JSON_SERVER_ENDPOINT}${pathWithParams}`
     });
   }
 }

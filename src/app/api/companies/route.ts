@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const TIMEOUT_INTERVAL = 1000;
-
-const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+const sleep = (ms: string | number | undefined) => new Promise((resolve) => setTimeout(resolve, ms ? Number(ms) : 0));
 
 export async function DELETE(request: NextRequest) {
   const data = await request.json();
@@ -21,7 +19,7 @@ export async function DELETE(request: NextRequest) {
       })
     );
 
-    await sleep(TIMEOUT_INTERVAL); // Simulate delay
+    await sleep(process.env.JSON_SERVER_DELAY); // Simulate delay
 
     return NextResponse.json({ success: true, results: deleteMultipleRequest });
   } catch (e) {
@@ -43,7 +41,7 @@ export async function GET(request: NextRequest) {
 
     const data = await response.json();
 
-    await sleep(TIMEOUT_INTERVAL); // Simulate delay
+    await sleep(process.env.JSON_SERVER_DELAY); // Simulate delay
 
     return NextResponse.json({
       success: true,
@@ -53,7 +51,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({
       success: false,
       message: e instanceof Error ? e.message : String(e),
-      requestPath: `${process.env.JSON_SERVER_ENDPOINT}${pathWithParams}`
+      requestUrl: `${process.env.JSON_SERVER_ENDPOINT}${pathWithParams}`
     });
   }
 }

@@ -59,7 +59,9 @@ const Companies: React.FC = () => {
         pagination.refreshData();
       }
     } catch (e) {
-      setRemoveError(e instanceof Error ? e.message : String(e));
+      const error = e instanceof Error ? e.message : String(e);
+      console.error(error);
+      setRemoveError(error);
     }
   }, [selectedCompanies, pagination]);
 

@@ -11,11 +11,12 @@ export const useFetchData = (url: string, options?: RequestInit) => {
     try {
       const response = await fetch(url, options);
       const result = await response.json();
-      setData(result);
       setLoading(false);
 
-      if (result.error) {
-        setError(result.error);
+      if (result.success) {
+        setData(result.results);
+      } else {
+        setError(result.message);
       }
     } catch (e) {
       setError(e instanceof Error ? e.message : String(e));

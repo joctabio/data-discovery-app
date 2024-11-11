@@ -55,6 +55,8 @@ const CompaniesTable = ({
           );
 
           pagination.refreshData();
+        } else {
+          setError(json.message);
         }
       } catch (e) {
         setError(e instanceof Error ? e.message : String(e));

@@ -23,9 +23,12 @@ export async function DELETE(request: NextRequest) {
 
     await sleep(TIMEOUT_INTERVAL); // Simulate delay
 
-    return NextResponse.json({ success: true, data: deleteMultipleRequest });
+    return NextResponse.json({ success: true, results: deleteMultipleRequest });
   } catch (e) {
-    return NextResponse.json({ error: e }, { status: 500 });
+    return NextResponse.json({
+      success: false,
+      message: e instanceof Error ? e.message : String(e)
+    });
   }
 }
 
@@ -33,13 +36,23 @@ export async function GET(request: NextRequest) {
   const url = new URL(request.url);
   const pathWithParams = url.pathname + url.search;
 
-  const response = await fetch(
-    `${process.env.JSON_SERVER_ENDPOINT}${pathWithParams}`
-  );
+  try {
+    const response = await fetch(
+      `${process.env.JSON_SERVER_ENDPOINT}${pathWithParams}`
+    );
 
-  const data = await response.json();
+    const data = await response.json();
 
-  await sleep(TIMEOUT_INTERVAL); // Simulate delay
+    await sleep(TIMEOUT_INTERVAL); // Simulate delay
 
-  return NextResponse.json(data);
+    return NextResponse.json({
+      success: true,
+      results: data
+    });
+  } catch (e) {
+    return NextResponse.json({
+      success: false,
+      message: e instanceof Error ? e.message : String(e)
+    });
+  }
 }

@@ -1,27 +1,26 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const sleep = (ms: string | number | undefined) => new Promise((resolve) => setTimeout(resolve, ms ? Number(ms) : 0));
+const sleep = (ms: string | number | undefined) =>
+  new Promise((resolve) => setTimeout(resolve, ms ? Number(ms) : 0));
 
 export async function DELETE(request: NextRequest) {
   const data = await request.json();
 
   try {
-    const deleteMultipleRequest = await Promise.all(
+    const res = await Promise.all(
       data.map(async (id: number) => {
-        const deleteCompanyRequest = await fetch(
+        return fetch(
           `${process.env.JSON_SERVER_ENDPOINT}/api/companies/${id}`,
           {
             method: 'DELETE'
           }
         );
-
-        return await deleteCompanyRequest.json();
       })
     );
 
     await sleep(process.env.JSON_SERVER_DELAY); // Simulate delay
 
-    return NextResponse.json({ success: true, results: deleteMultipleRequest });
+    return NextResponse.json({ success: true, results: res });
   } catch (e) {
     return NextResponse.json({
       success: false,

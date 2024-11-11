@@ -1,0 +1,182 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders landing page unchanged 1`] = `
+<div>
+  <div
+    class="text-center"
+  >
+    <div
+      class="mt-20 "
+    >
+      <h1
+        class="text-4xl font-bold mb-5"
+      >
+        Welcome, User!
+      </h1>
+    </div>
+    <div
+      class="text-center mb-10"
+    >
+      <p
+        class="text-sm text-center"
+      >
+        The World's #1 Data Privacy Software. Click the button below to get started.
+      </p>
+    </div>
+    <div
+      class="flex gap-4 items-center flex-col mb-20"
+    >
+      <a
+        class="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-indigo-600 text-background gap-2  dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
+        href="/companies"
+      >
+        <span
+          name="logo-apple-ar"
+          style="display: inline-block; height: 2em; width: 2em; visibility: inherit; fill: currentcolor; box-sizing: content-box; stroke: currentcolor;"
+        >
+          <svg
+            id="icons"
+            viewBox="0 0 512 512"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <polyline
+              fill="none"
+              points="201.14 64 256 32 310.86 64"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="32"
+            />
+            <line
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-miterlimit="10"
+              stroke-width="32"
+              x1="256"
+              x2="256"
+              y1="32"
+              y2="112"
+            />
+            <polyline
+              fill="none"
+              points="310.86 448 256 480 201.14 448"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="32"
+            />
+            <line
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-miterlimit="10"
+              stroke-width="32"
+              x1="256"
+              x2="256"
+              y1="480"
+              y2="400"
+            />
+            <polyline
+              fill="none"
+              points="64 207.51 64 144 117.15 112.49"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="32"
+            />
+            <line
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-miterlimit="10"
+              stroke-width="32"
+              x1="64"
+              x2="131.29"
+              y1="144"
+              y2="184"
+            />
+            <polyline
+              fill="none"
+              points="448 304.49 448 368 394.85 399.51"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="32"
+            />
+            <line
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-miterlimit="10"
+              stroke-width="32"
+              x1="448"
+              x2="380.71"
+              y1="368"
+              y2="328"
+            />
+            <polyline
+              fill="none"
+              points="117.15 400 64 368 64 304.49"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="32"
+            />
+            <line
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-miterlimit="10"
+              stroke-width="32"
+              x1="64"
+              x2="130.64"
+              y1="368"
+              y2="328"
+            />
+            <polyline
+              fill="none"
+              points="394.85 112.49 448 144 448 207.51"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="32"
+            />
+            <line
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-miterlimit="10"
+              stroke-width="32"
+              x1="448"
+              x2="380.71"
+              y1="144"
+              y2="184"
+            />
+            <polyline
+              fill="none"
+              points="256 320 256 256 310.86 224"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-miterlimit="10"
+              stroke-width="32"
+            />
+            <line
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-miterlimit="10"
+              stroke-width="32"
+              x1="256"
+              x2="201.14"
+              y1="256"
+              y2="224"
+            />
+          </svg>
+        </span>
+        Get Started
+      </a>
+    </div>
+  </div>
+</div>
+`;

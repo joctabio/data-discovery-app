@@ -54,7 +54,7 @@ const CompaniesTable = ({
             prev.filter((companyId) => companyId !== payload.id)
           );
 
-          await pagination.refreshData();
+          pagination.refreshData();
         }
       } catch (e) {
         setError(e instanceof Error ? e.message : String(e));
@@ -125,7 +125,9 @@ const CompaniesTable = ({
                   className=''
                   onChange={handleOnSelectAllCheckbox}
                   checked={
-                    selectedCompanies.length === data.length && data.length > 0
+                    data.filter((company) =>
+                      selectedCompanies.includes(company.id)
+                    ).length === data.length
                   }
                 />
                 <label htmlFor='checkbox-all-search' className='sr-only'>
@@ -196,7 +198,6 @@ const CompaniesTable = ({
 };
 
 const Pagination = ({ pagination }: { pagination: PaginationType }) => {
-  console.log('pagination render');
   return (
     <div className='flex items-center justify-between border-t border-gray-200 bg-white py-3 sm:px-6'>
       <div className='flex flex-1 justify-between sm:hidden'>

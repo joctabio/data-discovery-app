@@ -17,11 +17,11 @@ export async function DELETE(request: NextRequest) {
           }
         );
 
-        return deleteCompanyRequest.json();
+        return await deleteCompanyRequest.json();
       })
     );
 
-    await sleep(1000); // Simulate delay
+    await sleep(TIMEOUT_INTERVAL); // Simulate delay
 
     return NextResponse.json({ success: true, data: deleteMultipleRequest });
   } catch (e) {
@@ -36,7 +36,7 @@ export async function GET(request: NextRequest) {
   const response = await fetch(
     `${process.env.JSON_SERVER_ENDPOINT}${pathWithParams}`
   );
-  
+
   const data = await response.json();
 
   await sleep(TIMEOUT_INTERVAL); // Simulate delay

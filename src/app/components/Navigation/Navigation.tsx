@@ -47,7 +47,7 @@ const Navigation = () => {
             <div className='hidden sm:flex'>
               <div className='flex space-x-4'>
                 <NavLink
-                  href='/dashboard'
+                  href='/'
                   className='text-sm font-medium flex items-center text-gray-400 hover:text-gray-800 border-b-2'
                   activeClassName='text-indigo-600 border-indigo-600'
                   nonActiveClassName='border-b-transparent'
@@ -55,7 +55,7 @@ const Navigation = () => {
                   <span>Dashboard</span>
                 </NavLink>
                 <NavLink
-                  href='/dashboard/companies'
+                  href='/companies'
                   className='text-sm font-medium flex items-center text-gray-400 hover:text-gray-800 border-b-2'
                   activeClassName='text-indigo-600 border-indigo-600'
                   nonActiveClassName='border-b-transparent'
@@ -147,14 +147,14 @@ const Navigation = () => {
       >
         <div className='space-y-1 px-2 pb-3 pt-2'>
           <NavLink
-            href='/dashboard'
+            href='/'
             className='text-sm px-4 py-4 rounded-xl font-medium flex items-center hover:bg-gray-100'
             activeClassName='bg-indigo-600 text-white hover:bg-indigo-600'
           >
             Dashboard
           </NavLink>
           <NavLink
-            href='/dashboard/companies'
+            href='/companies'
             className='text-sm px-4 py-4 rounded-xl font-medium flex items-center hover:bg-gray-100'
             activeClassName='bg-indigo-600 text-white hover:bg-indigo-600'
           >

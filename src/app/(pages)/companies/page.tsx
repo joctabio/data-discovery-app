@@ -49,7 +49,6 @@ const Companies: React.FC = () => {
         method: 'DELETE',
         body: JSON.stringify(selectedCompanies)
       });
-
       const result = await response.json();
 
       if (result.success) {
@@ -57,7 +56,7 @@ const Companies: React.FC = () => {
         setSelectedCompanies([]);
         setModalLoading(false);
 
-        await pagination.refreshData();
+        pagination.refreshData();
       }
     } catch (e) {
       setRemoveError(e instanceof Error ? e.message : String(e));

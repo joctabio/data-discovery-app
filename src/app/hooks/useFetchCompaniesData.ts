@@ -106,10 +106,13 @@ export const useFetchCompaniesData = (): UseFetchCompaniesDataType => {
   }, [currentPage]);
 
   const refreshData = useCallback(async () => {
-    await setCurrentPage(1);
+    if (currentPage > 1) {
+      setCurrentPage(1);
+    }
+    
     await refetch();
     await refetchAllCompanies();
-  }, [refetch, refetchAllCompanies, setCurrentPage]);
+  }, [currentPage, refetch, refetchAllCompanies, setCurrentPage]);
 
   useEffect(() => {
     if (!loading && data) {

@@ -23,6 +23,7 @@ import { SelectedCompaniesType } from '@/app/types/company';
 import { ModalDataType } from '@/app/types/modal';
 
 const Companies: React.FC = () => {
+  const [generateLoading, setGenerateLoading] = useState<boolean>(false);
   const [removeError, setRemoveError] = useState<string>('');
   const [modalLoading, setModalLoading] = useState<boolean>(false);
   const [modalRemoveSelected, setModalRemoveSelected] = useState<ModalDataType>(
@@ -65,9 +66,22 @@ const Companies: React.FC = () => {
     }
   }, [selectedCompanies, pagination]);
 
-  const handleRefresh = useCallback(() => {
-    setSelectedCompanies([]); // Reset selected items when refreshing
-    pagination.refreshData();
+  const handleGenerate = useCallback(async () => {
+    setGenerateLoading(true);
+
+    try {
+      const generate = await fetch('/api/companies/generate');
+      const result = await generate.json();
+
+      if (result.success) {
+        await pagination.refreshData();
+      }
+    } catch (e) {
+      const error = e instanceof Error ? e.message : String(e);
+      console.error(error);
+    } finally {
+      setGenerateLoading(false);
+    }
   }, [pagination]);
 
   if (error) {
@@ -108,14 +122,14 @@ const Companies: React.FC = () => {
             <button
               type='button'
               className='btn'
-              onClick={handleRefresh}
-              disabled={loading}
+              onClick={handleGenerate}
+              disabled={loading || generateLoading}
             >
               <ArrowPathIcon
                 aria-hidden='true'
                 className='-ml-0.5 mr-1.5 h-5 w-5 text-gray-400'
               />
-              Refresh
+              Generate Data
             </button>
           </span>
 
@@ -154,7 +168,7 @@ const Companies: React.FC = () => {
               <MenuItem>
                 <button
                   className='block px-4 py-2 text-sm data-[focus]:bg-gray-100 data-[focus]:outline-none w-full text-left'
-                  onClick={handleRefresh}
+                  onClick={handleGenerate}
                   disabled={loading}
                 >
                   <ArrowPathIcon

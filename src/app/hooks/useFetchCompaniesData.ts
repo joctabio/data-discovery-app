@@ -122,7 +122,7 @@ export const useFetchCompaniesData = (): UseFetchCompaniesDataType => {
 
   return useMemo(
     () => ({
-      loading,
+      loading: loading || loadingAllCompanies,
       data: companies,
       setData: setCompanies,
       error,
@@ -144,6 +144,7 @@ export const useFetchCompaniesData = (): UseFetchCompaniesDataType => {
     }),
     [
       loading,
+      loadingAllCompanies,
       companies,
       setCompanies,
       error,

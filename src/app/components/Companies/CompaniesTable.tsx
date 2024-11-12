@@ -90,7 +90,15 @@ const CompaniesTable = ({
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const { checked } = e.target;
 
-      setSelectedCompanies(checked ? data.map((company) => company.id) : []);
+      setSelectedCompanies((prev) => {
+        if (checked) {
+          return [...prev, ...data.map((company) => company.id)];
+        } else {
+          return [
+            ...prev.filter((id) => !!data.find((company) => company.id === id))
+          ];
+        }
+      });
     },
     [data, setSelectedCompanies]
   );
@@ -103,6 +111,10 @@ const CompaniesTable = ({
     },
     [selectedCompanies]
   );
+
+  const checkboxAllChecked =
+    data.filter((company) => selectedCompanies.includes(company.id)).length ===
+    data.length;
 
   return (
     <div className='relative sm:rounded-lg'>
@@ -126,11 +138,7 @@ const CompaniesTable = ({
                   type='checkbox'
                   className=''
                   onChange={handleOnSelectAllCheckbox}
-                  checked={
-                    data.filter((company) =>
-                      selectedCompanies.includes(company.id)
-                    ).length === data.length
-                  }
+                  checked={checkboxAllChecked}
                 />
                 <label htmlFor='checkbox-all-search' className='sr-only'>
                   checkbox
@@ -200,6 +208,9 @@ const CompaniesTable = ({
 };
 
 const Pagination = ({ pagination }: { pagination: PaginationType }) => {
+  const { pages } = pagination;
+  const maxNumberOfPagesShown = 10;
+
   return (
     <div className='flex items-center justify-between border-t border-gray-200 bg-white py-3 sm:px-6'>
       <div className='flex flex-1 justify-between sm:hidden'>
@@ -242,23 +253,30 @@ const Pagination = ({ pagination }: { pagination: PaginationType }) => {
               <span className='sr-only'>Previous</span>
               <ChevronLeftIcon aria-hidden='true' className='h-5 w-5' />
             </button>
-            {pagination.pages.map((page) => (
-              <button
-                key={page}
-                className={`relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 ${
-                  pagination.currentPage === page
-                    ? 'bg-indigo-600 hover:bg-indigo-600 text-white cursor-default'
-                    : ''
-                }`}
-                onClick={() => {
-                  if (pagination.currentPage !== page) {
-                    pagination.setCurrentPage(page);
-                  }
-                }}
-              >
-                {page}
-              </button>
-            ))}
+            {pages.length <= maxNumberOfPagesShown &&
+              pages.map((page) =>
+                page === 0 ? (
+                  <span key={page} className=''>
+                    ...
+                  </span>
+                ) : (
+                  <button
+                    key={page}
+                    className={`relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 ${
+                      pagination.currentPage === page
+                        ? 'bg-indigo-600 hover:bg-indigo-600 text-white cursor-default'
+                        : ''
+                    }`}
+                    onClick={() => {
+                      if (pagination.currentPage !== page) {
+                        pagination.setCurrentPage(page);
+                      }
+                    }}
+                  >
+                    {page}
+                  </button>
+                )
+              )}
             <button
               className='btn'
               onClick={pagination.next}

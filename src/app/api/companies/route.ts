@@ -7,20 +7,11 @@ export async function DELETE(request: NextRequest) {
   const data = await request.json();
 
   try {
-    const res = await Promise.all(
-      data.map(async (id: number) => {
-        return fetch(
-          `${process.env.JSON_SERVER_ENDPOINT}/api/companies/${id}`,
-          {
-            method: 'DELETE'
-          }
-        );
-      })
-    );
+    const results = await fetch(`${process.env.JSON_SERVER_ENDPOINT}/api/companies/${data.toString()}`, {
+        method: 'DELETE'
+      });
 
-    await sleep(process.env.JSON_SERVER_DELAY); // Simulate delay
-
-    return NextResponse.json({ success: true, results: res });
+    return NextResponse.json({ success: true, results });
   } catch (e) {
     return NextResponse.json({
       success: false,

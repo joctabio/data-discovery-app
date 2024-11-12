@@ -9,6 +9,7 @@ const data = JSON.parse(
   fs.readFileSync(path.join(__dirname, 'db.json'), 'utf-8')
 );
 const router = jsonServer.router(data);
+const port = 8080;
 server.use(middlewares);
 server.use(
   // Add custom route here if needed
@@ -17,8 +18,8 @@ server.use(
   })
 );
 server.use(router);
-server.listen(8080, () => {
-  console.log('JSON Server is running');
+server.listen(port, () => {
+  console.log('JSON Server is running on port:', port);
 });
 // Export the Server API
 module.exports = server;

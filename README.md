@@ -1,4 +1,8 @@
-Welcome to the Data Discovery App
+<img src="./public/dd-logo.png" width="500px"/>
+
+<h2>Demo</h2>
+
+URL: https://data-discovery-app.vercel.app/
 
 ## Getting Started
 

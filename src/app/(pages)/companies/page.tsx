@@ -119,7 +119,7 @@ const Companies: React.FC = () => {
         isDeleteAction={true}
         loading={modalLoading}
       />
-      <div className='flex lg:items-start lg:justify-between mb-10'>
+      <div className='flex flex-col mb-5'>
         <div className='min-w-0 flex-1 mr-5'>
           <h2 className='text-2xl/7 font-bold text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight'>
             Companies
@@ -131,31 +131,7 @@ const Companies: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className='mt-5 flex lg:ml-4 lg:mt-0'>
-          <span className='sm:mr-3 hidden sm:block'>
-            <button
-              type='button'
-              className={`btn ${
-                selectedCompanies.length > 0
-                  ? 'text-red-500 border-red-500'
-                  : ''
-              }`}
-              onClick={handleRemoveSelectedButton}
-              disabled={loading || selectedCompanies.length === 0}
-            >
-              <TrashIcon
-                aria-hidden='true'
-                className={`-ml-0.5 mr-1.5 h-5 w-5 ${
-                  selectedCompanies.length > 0
-                    ? 'text-red-500 border-red-500'
-                    : 'text-gray-400'
-                }`}
-              />
-              Remove &nbsp;
-              {selectedCompanies.length > 0 &&
-                `(${selectedCompanies.length})`}{' '}
-            </button>
-          </span>
+        <div className='mt-5 flex justify-between sm:justify-start'>
           <span className='hidden sm:block'>
             <button
               type='button'
@@ -171,56 +147,14 @@ const Companies: React.FC = () => {
             </button>
           </span>
 
-          {/* Dropdown */}
-          <Menu as='div' className='relative sm:hidden'>
-            <MenuButton className='btn'>
-              <WrenchScrewdriverIcon className='h-5 w-5 mr-2 text-gray-400' />
-              Actions
-              <ChevronDownIcon
-                aria-hidden='true'
-                className='-mr-1 ml-1.5 h-5 w-5 text-gray-400'
-              />
-            </MenuButton>
-
-            <MenuItems
-              transition
-              className='absolute right-0 z-10 -mr-1 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in'
-            >
-              <MenuItem>
-                <button
-                  className='block px-4 py-2 text-sm data-[focus]:bg-gray-100 data-[focus]:outline-none w-full text-left'
-                  onClick={handleGenerate}
-                  disabled={loading}
-                >
-                  <ArrowPathIcon
-                    aria-hidden='true'
-                    className='-ml-0.5 mr-1.5 h-5 w-5 text-gray-400 inline'
-                  />
-                  Refresh
-                </button>
-              </MenuItem>
-              <MenuItem>
-                <button
-                  className='block px-4 py-2 text-sm data-[focus]:bg-gray-100 data-[focus]:outline-none w-full text-left'
-                  onClick={handleRemoveSelectedButton}
-                  disabled={loading || selectedCompanies.length === 0}
-                >
-                  <TrashIcon
-                    aria-hidden='true'
-                    className='-ml-0.5 mr-1.5 h-5 w-5 text-gray-400 inline'
-                  />
-                  Remove&nbsp;
-                  {selectedCompanies.length > 0 &&
-                    `(${selectedCompanies.length})`}{' '}
-                </button>
-              </MenuItem>
-            </MenuItems>
-          </Menu>
           <Listbox
             value={pagination.resultsPerPage}
             onChange={(value) => pagination.setResultsPerPage(value)}
           >
-            <div className='relative ml-3'>
+            <div className='relative sm:ml-auto mr-3'>
+              <span className='text-sm mr-3 hidden sm:inline'>
+                Show Results
+              </span>
               <ListboxButton className='btn relative pl-3 pr-10 text-left text-gray-900'>
                 <span className='flex items-center'>
                   <span className='ml-3 block'>
@@ -259,6 +193,75 @@ const Companies: React.FC = () => {
               </ListboxOptions>
             </div>
           </Listbox>
+          <span className='sm:mr-3 hidden sm:block'>
+            <button
+              type='button'
+              className={`btn ${
+                selectedCompanies.length > 0
+                  ? 'text-red-500 border-red-500'
+                  : ''
+              }`}
+              onClick={handleRemoveSelectedButton}
+              disabled={loading || selectedCompanies.length === 0}
+            >
+              <TrashIcon
+                aria-hidden='true'
+                className={`-ml-0.5 mr-1.5 h-5 w-5 ${
+                  selectedCompanies.length > 0
+                    ? 'text-red-500 border-red-500'
+                    : 'text-gray-400'
+                }`}
+              />
+              Remove &nbsp;
+              {selectedCompanies.length > 0 &&
+                `(${selectedCompanies.length})`}{' '}
+            </button>
+          </span>
+          {/* Dropdown */}
+          <Menu as='div' className='relative sm:hidden'>
+            <MenuButton className='btn'>
+              <WrenchScrewdriverIcon className='h-5 w-5 mr-2 text-gray-400' />
+              Actions
+              <ChevronDownIcon
+                aria-hidden='true'
+                className='-mr-1 ml-1.5 h-5 w-5 text-gray-400'
+              />
+            </MenuButton>
+
+            <MenuItems
+              transition
+              className='absolute right-0 z-10 -mr-1 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in'
+            >
+              <MenuItem>
+                <button
+                  className='flex justify-between px-4 py-2 text-sm data-[focus]:bg-gray-100 data-[focus]:outline-none w-full text-left'
+                  onClick={handleGenerate}
+                  disabled={loading}
+                >
+                  Generate
+                  <ArrowPathIcon
+                    aria-hidden='true'
+                    className='-ml-0.5 mr-1.5 h-5 w-5 text-gray-400 inline'
+                  />
+                </button>
+              </MenuItem>
+              <MenuItem>
+                <button
+                  className='flex justify-between px-4 py-2 text-sm data-[focus]:bg-gray-100 data-[focus]:outline-none w-full text-left'
+                  onClick={handleRemoveSelectedButton}
+                  disabled={loading || selectedCompanies.length === 0}
+                >
+                  Remove&nbsp;
+                  {selectedCompanies.length > 0 &&
+                    `(${selectedCompanies.length})`}{' '}
+                  <TrashIcon
+                    aria-hidden='true'
+                    className='-ml-0.5 mr-1.5 h-5 w-5 text-gray-400 inline'
+                  />
+                </button>
+              </MenuItem>
+            </MenuItems>
+          </Menu>
         </div>
       </div>
       <div className=''>

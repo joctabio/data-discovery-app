@@ -56,7 +56,7 @@ const Modal = ({
                 </div>
               </div>
             </div>
-            <div className='bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6'>
+            <div className='bg-gray-50 px-4 py-3 flex flex-col sm:flex-row-reverse sm:px-6 justify-center items-center'>
               {loading ? (
                 <ThreeDots
                   visible={true}

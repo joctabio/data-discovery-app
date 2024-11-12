@@ -42,7 +42,7 @@ export const useFetchCompaniesData = (): UseFetchCompaniesDataType => {
 
   // Get all companies (with pagination)
   const { loading, data, error, refetch } = useFetchData(
-    `/api/companies?_page=${currentPage}&_per_page=${resultsPerPage}`
+    `/api/companies?_page=${currentPage}&_limit=${resultsPerPage}`
   );
 
   // Get pagination data
@@ -106,13 +106,13 @@ export const useFetchCompaniesData = (): UseFetchCompaniesDataType => {
   }, [currentPage]);
 
   const refreshData = useCallback(async () => {
+    await refetch();
+    await refetchAllCompanies();
+
     if (currentPage > 1) {
       setCurrentPage(1);
     }
-    
-    await refetch();
-    await refetchAllCompanies();
-  }, [currentPage, refetch, refetchAllCompanies, setCurrentPage]);
+  }, [data, currentPage, refetch, refetchAllCompanies, setCurrentPage]);
 
   useEffect(() => {
     if (!loading && data) {

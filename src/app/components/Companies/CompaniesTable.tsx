@@ -51,12 +51,12 @@ const CompaniesTable = ({
         const json = await res.json();
 
         if (json.success) {
+          await pagination.refreshData();
+
           setModal((prev) => ({ ...prev, open: false }));
           setSelectedCompanies((prev) =>
             prev.filter((companyId) => companyId !== payload.id)
           );
-
-          pagination.refreshData();
         } else {
           setError(json.message);
         }
@@ -97,7 +97,7 @@ const CompaniesTable = ({
           return [...prev, ...data.map((company) => company.id)];
         } else {
           return [
-            ...prev.filter((id) => !!data.find((company) => company.id === id))
+            ...prev.filter((id) => !!!data.find((company) => company.id === id))
           ];
         }
       });

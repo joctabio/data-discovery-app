@@ -120,7 +120,7 @@ const CompaniesTable = ({
   const checkboxAllChecked = useMemo(
     () =>
       data.filter((company) => selectedCompanies.includes(company.id))
-        .length === data.length,
+        .length === data.length && data.length !== 0,
     [data, selectedCompanies]
   );
 

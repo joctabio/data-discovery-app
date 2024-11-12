@@ -114,7 +114,9 @@ export const CompaniesTablePagination = ({
         <div>
           <p className='text-sm text-gray-700'>
             Showing{' '}
-            <span className='font-medium'>{pagination.currentRange.start}</span>{' '}
+            <span className='font-medium'>
+              {pagination.totalRecords > 0 ? pagination.currentRange.start : 0}
+            </span>{' '}
             to{' '}
             <span className='font-medium'>{pagination.currentRange.end}</span>{' '}
             of <span className='font-medium'>{pagination.totalRecords}</span>{' '}

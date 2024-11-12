@@ -129,7 +129,7 @@ const Companies: React.FC = () => {
                 aria-hidden='true'
                 className='-ml-0.5 mr-1.5 h-5 w-5 text-gray-400'
               />
-              Generate Data
+              {generateLoading ? 'Generating...' : 'Generate Data'}
             </button>
           </span>
 
@@ -188,7 +188,7 @@ const Companies: React.FC = () => {
                     aria-hidden='true'
                     className='-ml-0.5 mr-1.5 h-5 w-5 text-gray-400 inline'
                   />
-                  Remove Selection&nbsp;
+                  Remove&nbsp;
                   {selectedCompanies.length > 0 &&
                     `(${selectedCompanies.length})`}{' '}
                 </button>

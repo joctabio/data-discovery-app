@@ -1,16 +1,18 @@
-import { Dispatch, SetStateAction, useCallback, useRef, useState } from 'react';
 import {
-  TrashIcon,
-  ExclamationTriangleIcon,
-  ChevronLeftIcon,
-  ChevronRightIcon
-} from '@heroicons/react/24/outline';
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useMemo,
+  useState
+} from 'react';
+import { TrashIcon } from '@heroicons/react/24/outline';
 
 // Types
 import { CompaniesType, SelectedCompaniesType } from '@/app/types/company';
-import { ModalDataType, ModalType } from '@/app/types/modal';
+import { ModalDataType } from '@/app/types/modal';
 import Modal from '../Modal/Modal';
 import { PaginationType } from '@/app/types/pagination';
+import { CompaniesTablePagination } from './CompaniesTablePagination';
 
 const CompaniesTable = ({
   data,
@@ -100,7 +102,7 @@ const CompaniesTable = ({
         }
       });
     },
-    [data, setSelectedCompanies]
+    [data, selectedCompanies, setSelectedCompanies]
   );
 
   const isCompanySelected = useCallback(
@@ -112,9 +114,12 @@ const CompaniesTable = ({
     [selectedCompanies]
   );
 
-  const checkboxAllChecked =
-    data.filter((company) => selectedCompanies.includes(company.id)).length ===
-    data.length;
+  const checkboxAllChecked = useMemo(
+    () =>
+      data.filter((company) => selectedCompanies.includes(company.id))
+        .length === data.length,
+    [data, selectedCompanies]
+  );
 
   return (
     <div className='relative sm:rounded-lg'>
@@ -145,13 +150,13 @@ const CompaniesTable = ({
                 </label>
               </div>
             </th>
-            <th scope='col' className='px-6 py-3'>
+            <th scope='col' className='px-6 py-3 hidden sm:block'>
               ID
             </th>
             <th scope='col' className='px-6 py-3'>
               Company Name
             </th>
-            <th scope='col' className='px-6 py-3 text-center'>
+            <th scope='col' className='px-6 py-3 text-right'>
               Action
             </th>
           </tr>
@@ -179,14 +184,14 @@ const CompaniesTable = ({
               </td>
               <td
                 scope='row'
-                className='px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white'
+                className='px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white hidden sm:block'
               >
                 {company.id}
               </td>
               <td className='px-6 py-4 text-gray-900 dark:text-white'>
                 {company.name}
               </td>
-              <td className='flex items-center justify-center px-6 py-4'>
+              <td className='flex items-center justify-end px-6 py-4'>
                 <button
                   className='font-medium hover:text-red-600 hover:dark:text-red-500'
                   onClick={() => handleRemoveButton(company.id)}
@@ -202,92 +207,7 @@ const CompaniesTable = ({
           ))}
         </tbody>
       </table>
-      <Pagination pagination={pagination} />
-    </div>
-  );
-};
-
-const Pagination = ({ pagination }: { pagination: PaginationType }) => {
-  const { pages } = pagination;
-  const maxNumberOfPagesShown = 10;
-
-  return (
-    <div className='flex items-center justify-between border-t border-gray-200 bg-white py-3 sm:px-6'>
-      <div className='flex flex-1 justify-between sm:hidden'>
-        <button
-          className='btn'
-          onClick={pagination.prev}
-          disabled={pagination.currentPage === 1}
-        >
-          Previous
-        </button>
-        <button
-          className='btn'
-          onClick={pagination.next}
-          disabled={pagination.currentPage >= pagination.lastPage}
-        >
-          Next
-        </button>
-      </div>
-      <div className='hidden sm:flex sm:flex-1 sm:items-center sm:justify-between'>
-        <div>
-          <p className='text-sm text-gray-700'>
-            Showing{' '}
-            <span className='font-medium'>{pagination.currentRange.start}</span>{' '}
-            to{' '}
-            <span className='font-medium'>{pagination.currentRange.end}</span>{' '}
-            of <span className='font-medium'>{pagination.totalRecords}</span>{' '}
-            results
-          </p>
-        </div>
-        <div>
-          <nav
-            aria-label='Pagination'
-            className='isolate inline-flex -space-x-px rounded-md shadow-sm'
-          >
-            <button
-              className='btn'
-              onClick={pagination.prev}
-              disabled={pagination.currentPage === 1}
-            >
-              <span className='sr-only'>Previous</span>
-              <ChevronLeftIcon aria-hidden='true' className='h-5 w-5' />
-            </button>
-            {pages.length <= maxNumberOfPagesShown &&
-              pages.map((page) =>
-                page === 0 ? (
-                  <span key={page} className=''>
-                    ...
-                  </span>
-                ) : (
-                  <button
-                    key={page}
-                    className={`relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 ${
-                      pagination.currentPage === page
-                        ? 'bg-indigo-600 hover:bg-indigo-600 text-white cursor-default'
-                        : ''
-                    }`}
-                    onClick={() => {
-                      if (pagination.currentPage !== page) {
-                        pagination.setCurrentPage(page);
-                      }
-                    }}
-                  >
-                    {page}
-                  </button>
-                )
-              )}
-            <button
-              className='btn'
-              onClick={pagination.next}
-              disabled={pagination.currentPage >= pagination.lastPage}
-            >
-              <span className='sr-only'>Next</span>
-              <ChevronRightIcon aria-hidden='true' className='h-5 w-5' />
-            </button>
-          </nav>
-        </div>
-      </div>
+      <CompaniesTablePagination pagination={pagination} />
     </div>
   );
 };

@@ -2,20 +2,26 @@
 
 import Image from 'next/image';
 import NavLink from './NavLink';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   BellAlertIcon,
   Bars3Icon,
   UserCircleIcon
 } from '@heroicons/react/24/outline';
+import { usePathname } from 'next/navigation';
 
 const Navigation = () => {
+  const pathname = usePathname();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [showAccountMenu, setShowAccountMenu] = useState(false);
 
   const handleClickAccountIcon = useCallback(() => {
     setShowAccountMenu((prev) => !prev);
   }, []);
+
+  useEffect(() => {
+    setIsSidebarOpen(false);
+  }, [pathname]);
 
   return (
     <nav className=''>
@@ -141,20 +147,20 @@ const Navigation = () => {
       <div
         className={`${
           isSidebarOpen ? 'sm:hidden' : 'hidden'
-        } bg-white fixed min-w-96 inset-x-0 z-50 shadow-lg`}
+        } bg-white fixed w-full inset-x-0 z-50 shadow-lg`}
         id='mobile-menu'
       >
-        <div className='space-y-1 px-2 pb-3 pt-2'>
+        <div className='p-2 border-t'>
           <NavLink
             href='/'
-            className='text-sm px-4 py-4 rounded-xl font-medium flex items-center hover:bg-gray-100'
+            className='text-sm px-4 py-4 rounded-md font-medium flex items-center hover:bg-gray-100'
             activeClassName='bg-indigo-600 text-white hover:bg-indigo-600'
           >
             Dashboard
           </NavLink>
           <NavLink
             href='/companies'
-            className='text-sm px-4 py-4 rounded-xl font-medium flex items-center hover:bg-gray-100'
+            className='text-sm px-4 py-4 rounded-md font-medium flex items-center hover:bg-gray-100'
             activeClassName='bg-indigo-600 text-white hover:bg-indigo-600'
           >
             Companies

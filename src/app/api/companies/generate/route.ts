@@ -1,4 +1,3 @@
-import { NextResponse } from 'next/server';
 import { success, error } from '@/app/utils/jsonResponse';
 
 import path from 'path';

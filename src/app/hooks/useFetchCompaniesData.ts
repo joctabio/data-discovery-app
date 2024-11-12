@@ -1,4 +1,4 @@
-import React, {
+import {
   Dispatch,
   SetStateAction,
   useCallback,
@@ -112,7 +112,7 @@ export const useFetchCompaniesData = (): UseFetchCompaniesDataType => {
     if (currentPage > 1) {
       setCurrentPage(1);
     }
-  }, [data, currentPage, refetch, refetchAllCompanies, setCurrentPage]);
+  }, [currentPage, refetch, refetchAllCompanies, setCurrentPage]);
 
   useEffect(() => {
     if (!loading && data) {

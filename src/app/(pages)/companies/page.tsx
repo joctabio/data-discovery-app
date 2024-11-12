@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import {
   ArrowPathIcon,
   TrashIcon,
@@ -11,7 +11,6 @@ import {
   ChevronUpDownIcon
 } from '@heroicons/react/24/outline';
 import {
-  Label,
   Listbox,
   ListboxButton,
   ListboxOption,
@@ -49,8 +48,7 @@ const Companies: React.FC = () => {
   const [selectedCompanies, setSelectedCompanies] =
     useState<SelectedCompaniesType>([]);
 
-  const { loading, data, setData, error, refetch, pagination } =
-    useFetchCompaniesData();
+  const { loading, data, error, pagination } = useFetchCompaniesData();
 
   const handleRemoveSelectedButton = useCallback(() => {
     setModalRemoveSelected((prev) => ({ ...prev, open: true }));
@@ -58,6 +56,7 @@ const Companies: React.FC = () => {
 
   const handleRemoveSelected = useCallback(async () => {
     setModalLoading(true);
+    setRemoveError('');
 
     try {
       const response = await fetch('/api/companies', {

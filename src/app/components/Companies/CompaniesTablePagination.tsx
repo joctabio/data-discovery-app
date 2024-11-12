@@ -87,7 +87,7 @@ export const CompaniesTablePagination = ({
 
         return accum;
       }, []),
-    [pagination, currentPage, lastPage]
+    [gap, pagination, currentPage, lastPage]
   );
 
   return (

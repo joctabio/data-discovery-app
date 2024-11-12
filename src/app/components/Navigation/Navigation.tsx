@@ -8,7 +8,6 @@ import {
   Bars3Icon,
   UserCircleIcon
 } from '@heroicons/react/24/outline';
-import { useRouter } from 'next/navigation';
 
 const Navigation = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);

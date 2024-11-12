@@ -42,6 +42,7 @@ const CompaniesTable = ({
       const newPayload = [payload.id];
 
       setLoading(true);
+      setError('');
 
       try {
         const res = await fetch('/api/companies/', {
@@ -61,7 +62,9 @@ const CompaniesTable = ({
           setError(json.message);
         }
       } catch (e) {
-        setError(e instanceof Error ? e.message : String(e));
+        const error = e instanceof Error ? e.message : String(e);
+        setError(error);
+        console.error(error);
       } finally {
         setLoading(false);
       }
@@ -102,7 +105,7 @@ const CompaniesTable = ({
         }
       });
     },
-    [data, selectedCompanies, setSelectedCompanies]
+    [data, setSelectedCompanies]
   );
 
   const isCompanySelected = useCallback(
